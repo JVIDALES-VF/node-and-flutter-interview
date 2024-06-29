@@ -7,6 +7,7 @@ Proyecto con api´s para subir un archivo.json a mongo db. 😎
 1. Clona este repositorio: `git clone https://github.com/JVIDALES-VF/node-and-flutter-interview.git`
 2. Ve al directorio del proyecto: `cd backend`
 3. Instala las dependencias: `npm install`
+4. Agrega en la carpeta raíz el arcivo .env  
 
 ## Uso
 
