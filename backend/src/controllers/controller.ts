@@ -11,29 +11,6 @@ const storage = multer.diskStorage({
     },
   });
 
-const upload = multer({ storage }).single('jsonFile');
-
-
- const saveArticles =  (req: Request, res: Response) => {
-  upload(req, res, async (err) => {
-    if (err) {
-      return res.status(500).send('Error al subir el archivo.');
-    }
-    // Procesa el archivo JSON y guárdalo en MongoDB
-    try {
-      const data = require('C:/Users/OmarVidales/Prueba_flutter_node/node-and-flutter-interview\data.json'); // Reemplaza con la ruta correcta
-      const ArticleModel = ArticleSchema
-      await ArticleModel.insertMany(data);
-      return res.status(200).send(
-        {
-          status_code: 200,
-          message: 'Datos guardados correctamente.'
-        });
-    } catch (error) {
-      return res.status(500).send('Error al guardar los datos en MongoDB.');
-    }
-  });
-};
 
 const findAll = async (req: Request, res: Response): Promise<void> => {
   console.log(req)
@@ -46,13 +23,22 @@ const findAll = async (req: Request, res: Response): Promise<void> => {
         }
       );
   } catch (error) {
-      //res.status(404).json({ message: error.message });
+    res.status(400).send(
+      {
+        status_code: 400,
+        response: res.status(404).json({ message: error })
+       }
+      )
   }
 };
 
 const uploadFile = async (req: Request, res: Response) =>{
   if (!req.file) {
-    return res.status(400).send('No file uploaded.');
+    return res.status(400).send(
+      {status_code: 400,
+        response: 'No file uploaded.'
+       }
+    );
   }
 
   try {
@@ -64,14 +50,23 @@ const uploadFile = async (req: Request, res: Response) =>{
       await newRecord.save();
     }
 
-    res.status(200).send('Data loaded successfully.');
+    res.status(200).send(
+      {status_code: 200,
+        response: 'Data loaded successfully.'
+       }
+      
+    );
   } catch (error) {
-    res.status(500).send('Error processing file.');
+    res.status(500).send(
+      {status_code: 500,
+        response: 'Error processing file.'
+       }
+      
+    );
   }
 }
 
 export default {
-  saveArticles,
   findAll,
   uploadFile
 };

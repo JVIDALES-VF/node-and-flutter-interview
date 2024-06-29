@@ -13,8 +13,14 @@ Proyecto con api´s para subir un archivo.json a mongo db. 😎
 
 Para ejecutar el proyecto en modo desarrollo, simplemente ejecuta: `npm run dev`
 
-## Notas Generales
+## Pasos para la invocación de los Endpoints
+En Postman:
 
+Selecciona el método POST.
+Ingresa la URL: http://localhost:8000/api/upload.
+Ve a la pestaña Body y selecciona form-data.
+Agrega un campo con el nombre file y selecciona tu archivo JSON.
+Haz clic en Send para enviar la petición. Si todo está configurado correctamente, deberías ver una respuesta indicando que los datos se cargaron con éxito.
 
 ## Licencia
 

@@ -8,12 +8,9 @@ const router: Router = express.Router();
 
 
 
-router.post('/articles', exampleController.saveArticles);
-router.get('/', exampleController.findAll); 
-/* router.post('/upload', exampleController.uploadFile)
- */const storage = multer.memoryStorage();
+router.get('/articles', exampleController.findAll); 
+const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
-
 router.post('/upload', upload.single('file'), exampleController.uploadFile)
 
 

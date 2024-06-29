@@ -39,16 +39,16 @@ class MyHomePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Articles List'),
+        title: const Text('Articles'),
       ),
       body: Column(
         children: [
           ElevatedButton(
             onPressed: () {
               if (articleProvider.dataFetched) {
-                articleProvider.clearPokemons();
+                articleProvider.clearArticles();
               } else {
-                articleProvider.fetchPokemons();
+                articleProvider.fetchArticles();
               }
             },
             child: Consumer<ArticlesProvider>(

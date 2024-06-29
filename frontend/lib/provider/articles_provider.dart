@@ -14,33 +14,28 @@ class ArticlesProvider with ChangeNotifier {
   String? get error => _error;
   bool get dataFetched => _dataFetched;
 
-  Future<void> fetchPokemons() async {
+  Future<void> fetchArticles() async {
     _isLoading = true;
     _error = null;
     notifyListeners();
 
     try {
-      final response = await http.get(Uri.parse('http://10.0.2.2:8000/'));
+      // IP para correr desde Android  10.0.2.2
+      // IP para correr desde emulador iOS 127.0.0.1
+      final response =
+          await http.get(Uri.parse('http://10.0.2.2:8000/articles'));
 
       if (response.statusCode == 200) {
         var jsonResponse = json.decode(response.body);
 
         for (var result in jsonResponse['response']) {
-          print(":::::::::::::::::::::::::::::");
-          print(result);
-          /*   final articleDetailResponse =
-              await http.get(Uri.parse(result['url']));
-          if (articleDetailResponse.statusCode == 200) { */
           articles.add(Article.fromJson(result));
-          /*     } */
         }
-
-        /*  articles.add(Article.fromJson(jsonResponse['response'])); */
 
         _articles = articles;
         _dataFetched = true;
       } else {
-        _error = 'Failed to load pokemons';
+        _error = 'Failed to load Articles';
       }
     } catch (e) {
       _error = e.toString();
@@ -50,7 +45,7 @@ class ArticlesProvider with ChangeNotifier {
     }
   }
 
-  void clearPokemons() {
+  void clearArticles() {
     _articles = [];
     _dataFetched = false;
     notifyListeners();

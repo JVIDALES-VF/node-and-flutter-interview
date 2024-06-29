@@ -35,6 +35,9 @@ class CardInfo extends StatelessWidget {
                   width: 50,
                   height: 50,
                   fit: BoxFit.cover,
+                  errorBuilder: (context, exception, stackTrack) => const Icon(
+                    Icons.warning_amber,
+                  ),
                 ),
               ),
               const SizedBox(width: 16),
