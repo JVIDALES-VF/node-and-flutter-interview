@@ -1,6 +1,4 @@
-// lib/main.dart
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:frontend/widgets/articles_card.dart';
 import 'package:provider/provider.dart';
 
@@ -20,6 +18,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => ArticlesProvider()),
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Articles List',
         theme: ThemeData(
           primarySwatch: Colors.blue,
