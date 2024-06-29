@@ -1,0 +1,20 @@
+# Backend con Node, TS y Express
+
+Proyecto con api´s para subir un archivo.json a mongo db. 😎
+
+## Pasos para correr el proyecto
+
+1. Clona este repositorio: `git clone https://github.com/JVIDALES-VF/node-and-flutter-interview.git`
+2. Ve al directorio del proyecto: `cd backend`
+3. Instala las dependencias: `npm install`
+
+## Uso
+
+Para ejecutar el proyecto en modo desarrollo, simplemente ejecuta: `npm run dev`
+
+## Notas Generales
+
+
+## Licencia
+
+Este proyecto está bajo la Licencia MIT. Consulta el archivo LICENSE para más detalles.
