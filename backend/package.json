@@ -8,7 +8,7 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "dev": "ts-node-dev src/server.ts",
         "build": "tsc",
-        "start": "node --loader ts-node/esm src/server.ts"
+        "start": "node --loader ts-node src/server.ts"
     },
     "keywords": [],
     "author": "",
