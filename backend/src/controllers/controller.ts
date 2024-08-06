@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import multer from 'multer';
 import ArticleSchema from '../models/model'
+import ModelUser from '../models/modelUser'
 
 const storage = multer.diskStorage({
     destination: (req: Request, file, cb) => {
@@ -66,7 +67,61 @@ const uploadFile = async (req: Request, res: Response) =>{
   }
 }
 
+const signup = async (req: Request, res: Response) => {
+  const user = ModelUser
+
+  try {
+    const data = await user.findOne({
+      email: req.body.email,
+    });
+
+    if (!data) {
+      const newUser = new ModelUser({
+        email: req.body.email,
+        password: req.body.password}
+      )
+      newUser.save().then((err) => {
+            console.log(newUser);
+            res.json({
+              status_code: 200,
+              response: newUser
+            })
+            
+    })
+    }else{
+      res.json({
+        status_code: 200,
+        response: 'email no disponible'
+      })
+    }
+  } catch (error) {
+    console.log(error);
+  }
+
+}
+
+const signin = (req: Request, res: Response) => {
+  var err = Error
+  const user = new ModelUser({
+    email: req.body.email,
+    password: req.body.password
+  })
+
+/*   if (err()) {
+    console.log(err);
+    res.json(err);
+  }
+  else{ */
+  console.log(user)  
+  res.json(JSON.stringify(user))
+
+  }
+
+/* }
+ */
 export default {
   findAll,
-  uploadFile
+  uploadFile,
+  signup,
+  signin
 };
